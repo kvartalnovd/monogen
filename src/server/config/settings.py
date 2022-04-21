@@ -116,3 +116,11 @@ MEDIA_ROOT = BASE_DIR.joinpath('www', 'media')
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# JWT
+JWT_ALGORITHM = 'HS2256'
+JWT_ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 # 24 hours
+
+# Google Console
+GOOGLE_CLIENT_ID = '749331434728-c0tljunbvtjigajbgh44i609bf8gp26t.apps.googleusercontent.com'
