@@ -111,7 +111,7 @@ STATICFILES_DIRS = [WWW_DIR.joinpath('static')]
 
 # Media files (Image: .png, .jpg, .jpeg; Docfiles: .docx, .pdf, etc.)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR.joinpath('www', 'media')
+MEDIA_ROOT = WWW_DIR.joinpath('media')
 
 
 # Default primary key field type
@@ -119,8 +119,29 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # JWT
-JWT_ALGORITHM = 'HS2256'
+JWT_ALGORITHM = 'HS256'
 JWT_ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24  # 24 hours
 
 # Google Console
 GOOGLE_CLIENT_ID = '749331434728-c0tljunbvtjigajbgh44i609bf8gp26t.apps.googleusercontent.com'
+
+
+# Django REST Framework
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ('components.common.oauth.services.auth_backend.AuthBackend',),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
+}
+
+
+# Swagger
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    }
+}

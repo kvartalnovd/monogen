@@ -4,8 +4,8 @@ from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from components.common.oauth import serializer
 from components.common.oauth.services.google_auth import GoogleAuthService
-from .. import serializer
 
 
 class GoogleLogin(View):
@@ -21,7 +21,7 @@ class GoogleOauth(APIView):
 	__googleAuthService = GoogleAuthService()
 
 	def post(self, request, *args, **kwargs):
-		google_data = serializer.GoogleAuth(data=request.data)
+		google_data = serializer.GoogleAuthSerializer(data=request.data)
 		if google_data.is_valid():
 			token = self.__googleAuthService.check_auth(google_data.data)
 			return Response(token)
