@@ -1,12 +1,10 @@
 from django.shortcuts import render
 from django.views.generic import View
-
-from rest_framework.views import APIView
-from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-from components.common.oauth.services import GoogleService
-
+from components.common.oauth.services.google_auth import GoogleAuthService
 from .. import serializer
 
 
@@ -20,12 +18,12 @@ class GoogleLogin(View):
 class GoogleOauth(APIView):
 	""" Confirmation of authorization via Google """
 
-	__googleService = GoogleService()
+	__googleAuthService = GoogleAuthService()
 
 	def post(self, request, *args, **kwargs):
-		googleData = serializer.GoogleAuth(data=request.data)
-		if googleData.is_valid():
-			token = self.__googleService.checkAuth(googleData.data)
+		google_data = serializer.GoogleAuth(data=request.data)
+		if google_data.is_valid():
+			token = self.__googleAuthService.check_auth(google_data.data)
 			return Response(token)
 
 		return AuthenticationFailed(code=403, detail='Google data invalid')
