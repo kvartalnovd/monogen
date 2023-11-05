@@ -34,8 +34,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
 
-    # Monogen system applications
-    'components.common.oauth.apps.OauthConfig'
+    # System common components of the monogen application
+    'components.common.oauth.apps.OauthConfig',
+
+    # System space components of the monogen application
+    'components.space.task.apps.TaskConfig',
 ]
 
 MIDDLEWARE = [
@@ -128,7 +131,7 @@ GOOGLE_CLIENT_ID = '749331434728-c0tljunbvtjigajbgh44i609bf8gp26t.apps.googleuse
 
 # Django REST Framework
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': ('components.common.oauth.services.auth_backend.AuthBackend',),
+    # 'DEFAULT_AUTHENTICATION_CLASSES': ('components.common.oauth.services.auth_backend.AuthBackend',),
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
     ]

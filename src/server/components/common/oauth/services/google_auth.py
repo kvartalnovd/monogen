@@ -3,7 +3,7 @@ from typing import Union
 from django.conf import settings
 from google.auth.transport import requests
 from google.oauth2 import id_token
-from rest_framework.exceptions import AuthenticationFailed
+from rest_framework.exceptions import AuthenticationFailed 
 
 from components.common.oauth.models import AuthUser
 from components.common.oauth.serializer import GoogleAuthSerializer
